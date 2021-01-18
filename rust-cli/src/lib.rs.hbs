@@ -1,0 +1,19 @@
+use structopt::StructOpt;
+
+use crate::cli::{Cli, Command, Command::*};
+
+mod cli;
+
+pub struct CliEntryPoint { pub cmd: Command }
+
+impl CliEntryPoint {
+    pub fn run(self) {
+        match self.cmd {
+            Hello => println!("Hello World!"),
+        }
+    }
+}
+
+impl Default for CliEntryPoint {
+    fn default() -> Self { Self { cmd: Cli::from_args().cmd } }
+}
